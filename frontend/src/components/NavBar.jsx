@@ -1,37 +1,16 @@
-import React, { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../index.css";
 
-export default function Navbar(){
-  const { user, logout, isAuthenticated } = useContext(AuthContext);
-  const nav = useNavigate();
-
+export default function Navbar() {
   return (
-    <header className="navbar">
-      <div className="inner" style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-        <div>
-          <span className="brand">EduFlow</span>
-          <span style={{marginLeft:8}} className="small muted">Courses & Lessons</span>
-        </div>
-
-        <nav className="navlinks">
-          <NavLink to="/courses" className={({isActive}) => isActive ? 'active' : ''}>Courses</NavLink>
-          {isAuthenticated && user?.role === 'instructor' && (
-            <NavLink to="/instructor" className={({isActive}) => isActive ? 'active' : ''}>Instructor</NavLink>
-          )}
-          {!isAuthenticated ? (
-            <>
-              <NavLink to="/login">Login</NavLink>
-              <NavLink to="/register">Register</NavLink>
-            </>
-          ) : (
-            <>
-              <span className="small muted" style={{marginLeft:8}}>{user.username}</span>
-              <button className="btn ghost" onClick={() => { logout(); nav('/courses'); }}>Logout</button>
-            </>
-          )}
-        </nav>
+    <nav>
+      <h1>TaskFlow</h1>
+      <div>
+        <Link to="/tasks">Tasks</Link>
+        <Link to="/projects">Projects</Link>
+        <Link to="/login">Login</Link>
       </div>
-    </header>
+    </nav>
   );
 }
