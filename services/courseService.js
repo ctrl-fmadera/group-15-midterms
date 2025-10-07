@@ -5,4 +5,20 @@ async function createCourse(courseData) {
     return course.save();
 }
 
-module.exports = { ceateCourse }
+async function getCourseById(id) {
+    return Course.findById(id);
+}
+
+async function updateCourse(id, updateData) {
+    return findByIdandUpdate(id, updateData, { new: true })
+}
+
+async function deleteCourse(id) {
+    return Course.findByIdandDelete(id)
+}
+
+async function getAllCourse() {
+    return Course.find()
+}
+
+module.exports = { createCourse, updateCourse, deleteCourse, getAllCourse }
