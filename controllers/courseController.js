@@ -12,7 +12,7 @@ async function createCourse(req, res) {
 
 async function updateCourse(req, res) {
   const course = await courseService.getCourseById(req.params.id);
-  if (!course || course.instructorId.toString() !== req.user.id) return res.status(403).send('Forbidden');
+  if (!course || course.instructorId.toString() !== req.user.id) return res.status(403).send('Forbidden: You are not the creator of this course.');
   try {
     const updatedCourse = await courseService.updateCourse(req.params.id, req.body);
     res.json(updatedCourse);
@@ -23,7 +23,7 @@ async function updateCourse(req, res) {
 
 async function deleteCourse(req, res) {
   const course = await courseService.getCourseById(req.params.id);
-  if (!course || course.instructorId.toString() !== req.user.id) return res.status(403).send('Forbidden');
+  if (!course || course.instructorId.toString() !== req.user.id) return res.status(403).send('Forbidden: You are not the creator of this course.');
   try {
     await courseService.deleteCourse(req.params.id);
     res.send('Deleted');
