@@ -21,4 +21,4 @@ async function getAllCourse() {
     return Course.find()
 }
 
-module.exports = { createCourse, updateCourse, deleteCourse, getAllCourse }
+module.exports = { createCourse, getCourseById, updateCourse, deleteCourse, getAllCourse }
